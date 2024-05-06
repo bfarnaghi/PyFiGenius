@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!-- Add any CSS or meta tags needed -->
+</head>
+<body>
+    <h1>Welcome to Your Dashboard</h1>
+
+    <!-- Display User Information -->
+    <h2>User Information</h2>
+    <p>Username: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    <!-- Add more user-related information as needed -->
+
+    <!-- Display Bank Accounts -->
+    <h2>Bank Accounts</h2>
+    <ul>
+    {% for account in bank_accounts %}
+        <li>{{ account.name }} - Balance: {{ account.balance }}</li>
+        <!-- Add buttons/links for editing/deleting each bank account -->
+    {% endfor %}
+    </ul>
+
+    <!-- Form for Adding New Bank Account -->
+    <h3>Add New Bank Account</h3>
+    <form method="post" action="{% url 'add_bank_account' %}">
+        {% csrf_token %}
+        <label for="account_name">Account Name:</label>
+        <input type="text" id="account_name" name="name" required><br>
+        <label for="initial_balance">Initial Balance:</label>
+        <input type="number" id="initial_balance" name="balance" required><br>
+        <button type="submit">Add Account</button>
+    </form>
+
+
+    <!-- Display Expenses -->
+    <h2>Expenses</h2>
+    <ul>
+    {% for expense in expenses %}
+        <li>{{ expense.text }} - Amount: {{ expense.amount }} - Date: {{ expense.date }}</li>
+        <!-- Add buttons/links for editing/deleting each expense -->
+    {% endfor %}
+    </ul>
+
+    <!-- Form for Adding New Expense -->
+    <h3>Add New Expense</h3>
+    <form method="post" action="{% url 'submit_expense' %}">
+        {% csrf_token %}
+        <label for="expense_text">Text:</label>
+        <input type="text" id="expense_text" name="text" required><br>
+        <label for="expense_amount">Amount:</label>
+        <input type="number" id="expense_amount" name="amount" required><br>
+        <label for="expense_date">Date:</label>
+        <input type="date" id="expense_date" name="date" required><br>
+        <!-- Add a dropdown for selecting expense category -->
+        <!-- Add a dropdown for selecting bank account -->
+        <button type="submit">Add Expense</button>
+    </form>
+
+
+    <!-- Display Incomes -->
+    <h2>Incomes</h2>
+    <ul>
+    {% for income in incomes %}
+        <li>{{ income.text }} - Amount: {{ income.amount }} - Date: {{ income.date }}</li>
+        <!-- Add buttons/links for editing/deleting each income -->
+    {% endfor %}
+    </ul>
+
+    <!-- Form for Adding New Income -->
+    <h3>Add New Income</h3>
+    <form method="post" action="{% url 'submit_income' %}">
+        {% csrf_token %}
+        <label for="income_text">Text:</label>
+        <input type="text" id="income_text" name="text" required><br>
+        <label for="income_amount">Amount:</label>
+        <input type="number" id="income_amount" name="amount" required><br>
+        <label for="income_date">Date:</label>
+        <input type="date" id="income_date" name="date" required><br>
+        <!-- Add a dropdown for selecting income category -->
+        <!-- Add a dropdown for selecting bank account -->
+        <button type="submit">Add Income</button>
+    </form>
+
+
+
+    <!-- Add more sections for displaying and managing other data as needed -->
+
+</body>
+</html>
