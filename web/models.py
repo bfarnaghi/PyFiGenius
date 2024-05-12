@@ -66,8 +66,8 @@ class Expense(models.Model):
     date = models.DateField()
     amount = models.BigIntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(ExpenseCategory, on_delete=models.CASCADE)
-    bank_account = models.ForeignKey(BankAccount, on_delete=models.CASCADE)  # ForeignKey to BankAccount model
+    category = models.ForeignKey(ExpenseCategory, on_delete=models.CASCADE,null=True)
+    bank_account = models.ForeignKey(BankAccount, on_delete=models.CASCADE,null=True)  # ForeignKey to BankAccount model
 
     def __str__(self):
         return "{}-{}-{}".format(self.amount, self.bank_account, self.date)

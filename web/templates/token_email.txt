@@ -1,0 +1,14 @@
+Subject: Your Account Token
+
+Hello,
+
+Thank you for creating an account with us. Below is your account token:
+
+Token: {{ token }}
+
+This token is required for accessing our API. Please keep it safe and do not share it with anyone.
+
+If you have any questions or concerns, feel free to contact us.
+
+Best regards,
+PyFiGenius
